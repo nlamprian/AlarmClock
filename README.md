@@ -16,4 +16,4 @@ The code was implemented based on the following `FSM` design. For details on the
 Dependencies
 ------------
 
-The code makes use of the [`Adafruit RTClib`](https://github.com/adafruit/RTClib) and [`OSEPP LCDKeypad`](http://osepp.com/products/shield-arduino-compatible/16x2-lcd-display-keypad-shield/) libraries.
+The code makes use of the [`Jeelab RTClib`](https://github.com/adafruit/RTClib) and [`OSEPP LCDKeypad`](http://osepp.com/products/shield-arduino-compatible/16x2-lcd-display-keypad-shield/) libraries.
