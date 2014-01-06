@@ -240,7 +240,7 @@ void setAlarmHours()
     tmpHours = 0;
     timeRef = millis();
     lcd.setCursor(0,1);
-    lcd.print("Set hour:  0");
+    lcd.print("Set hours:  0");
     
     while ( (unsigned long)(millis() - timeRef) < 5000 )
     {
@@ -249,9 +249,9 @@ void setAlarmHours()
         if ( button == KEYPAD_UP )
         {
             tmpHours = tmpHours < 23 ? tmpHours + 1 : tmpHours;
-            lcd.setCursor(10,1);
+            lcd.setCursor(11,1);
             lcd.print("  ");
-            lcd.setCursor(10,1);
+            lcd.setCursor(11,1);
             if ( tmpHours < 10 ) lcd.print(" ");
             lcd.print(tmpHours);
             timeRef = millis();
@@ -259,9 +259,9 @@ void setAlarmHours()
         else if ( button == KEYPAD_DOWN )
         {
             tmpHours = tmpHours > 0 ? tmpHours - 1 : tmpHours;
-            lcd.setCursor(10,1);
+            lcd.setCursor(11,1);
             lcd.print("  ");
-            lcd.setCursor(10,1);
+            lcd.setCursor(11,1);
             if ( tmpHours < 10 ) lcd.print(" ");
             lcd.print(tmpHours);
             timeRef = millis();
