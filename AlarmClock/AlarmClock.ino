@@ -19,9 +19,6 @@
  *      UP or DOWN: Snooze -> Adds 10 minutes to the alarm time
  * ** After 5 seconds of inactivity, the clock returns to default mode
  * 
- * Author:
- * Nick Lamprianidis { paign10.ln [at] gmail [dot] com }
- * 
  * Note 1:
  * The development of the code was based on a Finite State Machine (FSM)
  * you can find on github: https://github.com/pAIgn10/AlarmClock
@@ -33,6 +30,14 @@
  * computer's time on the RTC. Afterwards, make sure to reupload the code with
  * line 91 commented out. If you don't do that, the next time your Arduino resets
  * it will write the time again on the RTC... the time of the code's compilation.
+ * 
+ * Author:
+ *   Nick Lamprianidis { paign10.ln [at] gmail [dot] com }
+ * 
+ * License:
+ *   Copyright (c) 2014 Nick Lamprianidis 
+ *   This code is released under the MIT license
+ *   http://www.opensource.org/licenses/mit-license.php
  */
 
 #include <Wire.h>  // Required by RTClib
