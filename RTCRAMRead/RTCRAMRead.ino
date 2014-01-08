@@ -30,12 +30,12 @@
 
 #include <Wire.h>
 
-#define DS1307 0x68  // DS1307's address
+#define DS1307_ADDR 0x68  // DS1307's address
 
 // We want to save a byte on the RTC's RAM
 // This byte represents a variable and we have to give it
 // a name and an address at which we want it to be saved
-#define COUNTER 0x3F
+#define COUNTER_ADDR 0x3F
 
 void setup()
 {
@@ -45,10 +45,10 @@ void setup()
     
 	Wire.begin();  // Initializes Wire library
 	
-	String msg = " This is a string from DS1307's RAM.";
+	String msg = " This is a string from DS1307_ADDR's RAM.";
 
 	writeString2RTC(msg);  // Writes the String variable msg to the RTC's RAM
-	writeByte(COUNTER, 0);  // Initializes the variable COUNTER
+	writeByte(COUNTER_ADDR, 0);  // Initializes the variable COUNTER
 }
 
 void loop()
@@ -57,12 +57,12 @@ void loop()
 	char ram[56];
 	
 	// Reads the data and prints them on the serial monitor
-	data = readByte(COUNTER);
+	data = readByte(COUNTER_ADDR);
 	readRTCRAM(ram);
 	Serial.print(data);
 	Serial.println(ram);
 	
-	writeByte(COUNTER, data + 1); // Increments variable COUNTER
+	writeByte(COUNTER_ADDR, data + 1);  // Increments variable COUNTER
 	delay(1000);
 }
 
@@ -71,11 +71,11 @@ void loop()
 // Returns the byte read from the module's RAM
 uint8_t readByte(uint8_t address)
 {
-	Wire.beginTransmission(DS1307);
+	Wire.beginTransmission(DS1307_ADDR);
 	Wire.write(address);  // Sets the register pointer on the DS1307
 	Wire.endTransmission();
 	
-	Wire.requestFrom(DS1307, 1);  // Reads byte from the designated register
+	Wire.requestFrom(DS1307_ADDR, 1);  // Reads byte from the designated register
 	return Wire.read();
 }
 
@@ -84,7 +84,7 @@ uint8_t readByte(uint8_t address)
 // http://arduino.cc/en/Reference/WireEndTransmission
 uint8_t writeByte(uint8_t address, uint8_t data)
 {
-	Wire.beginTransmission(DS1307);
+	Wire.beginTransmission(DS1307_ADDR);
 	Wire.write(address);  // Sets the register pointer on the DS1307
 	Wire.write(data);  // Data to write at the designated register
 	return Wire.endTransmission();  // Performs the transmission
@@ -99,7 +99,7 @@ void writeString2RTC(String& msg)
 {
 	uint8_t n = msg.length();
 	
-	Wire.beginTransmission(DS1307);
+	Wire.beginTransmission(DS1307_ADDR);
 	Wire.write(0x08);
 	for (uint8_t i = 0; i < n && i < 31; ++i) Wire.write(msg[i]);
 	if ( n < 31 ) Wire.write(0x0);
@@ -107,7 +107,7 @@ void writeString2RTC(String& msg)
 	
 	if ( n > 31 )
 	{
-		Wire.beginTransmission(DS1307);
+		Wire.beginTransmission(DS1307_ADDR);
 		Wire.write(0x27);
 		for (uint8_t i = 31; i < n && i < 54; ++i) Wire.write(msg[i]);
 		Wire.write(0x0);
@@ -122,11 +122,11 @@ void readRTCRAM(char *ram)
 {
 	uint8_t i = 0;
 	
-	Wire.beginTransmission(DS1307);
+	Wire.beginTransmission(DS1307_ADDR);
 	Wire.write(0x08);
 	Wire.endTransmission();
-	Wire.requestFrom(DS1307, 28);
+	Wire.requestFrom(DS1307_ADDR, 28);
 	while (Wire.available()) ram[i++] = Wire.read();
-	Wire.requestFrom(DS1307, 28);
+	Wire.requestFrom(DS1307_ADDR, 28);
 	while (Wire.available()) ram[i++] = Wire.read();
 }
