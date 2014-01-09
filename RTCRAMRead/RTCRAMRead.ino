@@ -73,7 +73,7 @@ uint8_t readByte(uint8_t address)
 {
 	Wire.beginTransmission(DS1307_ADDR);
 	Wire.write(address);  // Sets the register pointer on the DS1307
-	Wire.endTransmission();
+	Wire.endTransmission(false);
 	
 	Wire.requestFrom(DS1307_ADDR, 1);  // Reads byte from the designated register
 	return Wire.read();
@@ -124,8 +124,8 @@ void readRTCRAM(char *ram)
 	
 	Wire.beginTransmission(DS1307_ADDR);
 	Wire.write(0x08);
-	Wire.endTransmission();
-	Wire.requestFrom(DS1307_ADDR, 28);
+	Wire.endTransmission(false);
+	Wire.requestFrom(DS1307_ADDR, 28, false);
 	while (Wire.available()) ram[i++] = Wire.read();
 	Wire.requestFrom(DS1307_ADDR, 28);
 	while (Wire.available()) ram[i++] = Wire.read();
