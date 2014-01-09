@@ -73,7 +73,7 @@ uint8_t readByte(uint8_t address)
 {
 	Wire.beginTransmission(DS1307_ADDR);
 	Wire.write(address);  // Sets the register pointer on the DS1307
-	Wire.endTransmission(false);
+	Wire.endTransmission(false);  // Performs the transmission and keeps control of the bus
 	
 	Wire.requestFrom(DS1307_ADDR, 1);  // Reads byte from the designated register
 	return Wire.read();
