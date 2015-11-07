@@ -189,7 +189,7 @@ void showTime()
     const char* monthName[] = { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
     
     lcd.clear();
-    lcd.print(String(dayName[now.dayOfWeek()]) + " " +
+    lcd.print(String(dayName[now.dayOfTheWeek()]) + " " +
               (now.day() < 10 ? "0" : "") + now.day() + " " +
               monthName[now.month()-1] + " " + now.year());
     lcd.setCursor(0,1);
