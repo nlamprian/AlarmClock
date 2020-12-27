@@ -21,7 +21,7 @@
  * 
  * Note 1:
  * The development of the code was based on a Finite State Machine (FSM)
- * you can find on github: https://github.com/pAIgn10/AlarmClock
+ * you can find on github: https://github.com/nlamprian/AlarmClock
  * The code is quite simple and was made possible due to the above 
  * preliminary design. You are urged to study both the FSM and the code.
  * Note 2:
@@ -32,7 +32,7 @@
  * it will write the time again on the RTC... the time of the code's compilation.
  * 
  * Author:
- *   Nick Lamprianidis { paign10.ln [at] gmail [dot] com }
+ *   Nick Lamprianidis { nlamprian [at] gmail [dot] com }
  * 
  * License:
  *   Copyright (c) 2014 Nick Lamprianidis 
